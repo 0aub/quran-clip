@@ -1,0 +1,7 @@
+services:
+  quran-clip:
+    build: .
+    volumes:
+      - ./output:/app/output
+    stdin_open: true
+    tty: true

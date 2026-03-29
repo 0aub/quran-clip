@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "quran-clip"
+version = "0.1.0"
+description = "A CLI tool that downloads Quran audio recitations by surah, ayah range, and reciter — then merges them into a single audio file."
+requires-python = ">=3.11"
+dependencies = [
+    "typer[all]>=0.12",
+    "httpx>=0.27",
+    "rich>=13.0",
+    "thefuzz[speedup]>=0.22",
+    "tenacity>=8.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "pytest-cov>=5.0",
+    "respx>=0.21",
+    "ruff>=0.5",
+]
+
+[project.scripts]
+quran-clip = "quran_clip.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["quran_clip"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
